@@ -5,7 +5,6 @@ import time
 import traci
 import random
 import numpy as np
-import traci.constants
 import matplotlib.pyplot as plt
 from algorithm import ga
 
@@ -21,7 +20,11 @@ sumoBinary = "C:\\Program Files (x86)\\Eclipse\\Sumo\\bin\\sumo-gui"
 sumoCmd = [sumoBinary, "-c", "DATASETS/Dhanmondi.sumocfg"]
 
 
+# CONTROL STATE
 def main(value1, value2, value3):
+    """ FUNCTION TAKES ARGUEMENTS FROM THE CONTROL LOOP AND RUNS THE 
+    CONTROL STATE IN THE TRAFFIC SIMULATOR SUMO """
+
     traci.start(sumoCmd)
     TLIDS = traci.trafficlight.getIDList()
     step = 0
@@ -30,14 +33,15 @@ def main(value1, value2, value3):
         for traffic_light_id in TLIDS:
             if value1 < value2 and value1 < value3:
                 traci.trafficlight.setProgram(traffic_light_id, "program_01")
-            if value2 < value1 and value2 < value3:
+            elif value2 < value1 and value2 < value3:
                 traci.trafficlight.setProgram(traffic_light_id, "program_02")
-            if value3 < value1 and value3 < value2:
+            else:
                 traci.trafficlight.setProgram(traffic_light_id, "program_03")
         step += 1
     traci.close()
 
 
+# CONTROL LOOP
 for _ in range(0, 4):
 
     # RUNNING THE ALGORITHM
