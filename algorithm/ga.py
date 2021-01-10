@@ -111,12 +111,12 @@ def run_ga(problem, params):
         best_cost[iterations] = best_solution.cost
 
         # SHOWING RESULTS
-        # print(f"Iteration: {iterations} Best Cost: {best_cost[iterations]}")
+        print(f"Iteration: {iterations} Best Cost: {best_cost[iterations]}")
 
     # OUTPUT RESULT
     output = structure()
-    output.pop = population
-    output.best_solution = best_solution
+    # output.pop = population
+    # output.best_solution = best_solution
     output.best_cost = best_cost
     return output
 
